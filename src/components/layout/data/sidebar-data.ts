@@ -19,7 +19,7 @@ import {
   IconUserOff,
   IconUsers,
 } from '@tabler/icons-react'
-import { AudioWaveform, Command, GalleryVerticalEnd } from 'lucide-react'
+import { AudioWaveform, Code2, Command, GalleryVerticalEnd } from 'lucide-react'
 import { ClerkLogo } from '@/assets/clerk-logo'
 import { type SidebarData } from '../types'
 
@@ -196,6 +196,11 @@ export const sidebarData: SidebarData = {
           title: 'Help Center',
           url: '/help-center',
           icon: IconHelp,
+        },
+        {
+          title: 'Petani',
+          url: '/petani',
+          icon: Code2,
         },
       ],
     },
