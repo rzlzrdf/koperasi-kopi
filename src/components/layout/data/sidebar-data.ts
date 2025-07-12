@@ -61,12 +61,12 @@ export const sidebarData: SidebarData = {
             },
             {
               title: 'Lahan',
-              url: '/clerk/sign-up',
+              url: '/lahan',
               icon: IconTree,
             },
             {
               title: 'Satuan',
-              url: '/clerk/user-management',
+              url: '/satuan',
               icon: Ruler,
             },
             {
@@ -76,24 +76,24 @@ export const sidebarData: SidebarData = {
             },
             {
               title: 'Barang',
-              url: '/clerk/user-management',
+              url: '/tasks',
               icon: BoxIcon,
             },
             {
               title: 'Proses Pasca Panen',
-              url: '/clerk/user-management',
+              url: '/users',
               icon: TruckElectric,
             },
           ],
         },
         {
           title: 'Farm Maanagement',
-          url: '/clerk/user-management',
+          url: '/farm-management',
           icon: Truck,
         },
         {
           title: 'Inventory Maanagement',
-          url: '/clerk/user-management',
+          url: '/inventory-management',
           icon: Warehouse,
         },
       ],

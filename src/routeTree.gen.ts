@@ -28,8 +28,12 @@ import { Route as AuthenticatedSettingsRouteRouteImport } from './routes/_authen
 import { Route as AuthenticatedUsersIndexRouteImport } from './routes/_authenticated/users/index'
 import { Route as AuthenticatedTasksIndexRouteImport } from './routes/_authenticated/tasks/index'
 import { Route as AuthenticatedSettingsIndexRouteImport } from './routes/_authenticated/settings/index'
+import { Route as AuthenticatedSatuanIndexRouteImport } from './routes/_authenticated/satuan/index'
 import { Route as AuthenticatedPetaniIndexRouteImport } from './routes/_authenticated/petani/index'
+import { Route as AuthenticatedLahanIndexRouteImport } from './routes/_authenticated/lahan/index'
+import { Route as AuthenticatedInventoryManagementIndexRouteImport } from './routes/_authenticated/inventory-management/index'
 import { Route as AuthenticatedHelpCenterIndexRouteImport } from './routes/_authenticated/help-center/index'
+import { Route as AuthenticatedFarmManagementIndexRouteImport } from './routes/_authenticated/farm-management/index'
 import { Route as AuthenticatedChatsIndexRouteImport } from './routes/_authenticated/chats/index'
 import { Route as AuthenticatedAppsIndexRouteImport } from './routes/_authenticated/apps/index'
 import { Route as ClerkAuthenticatedUserManagementRouteImport } from './routes/clerk/_authenticated/user-management'
@@ -134,16 +138,39 @@ const AuthenticatedSettingsIndexRoute =
     path: '/',
     getParentRoute: () => AuthenticatedSettingsRouteRoute,
   } as any)
+const AuthenticatedSatuanIndexRoute =
+  AuthenticatedSatuanIndexRouteImport.update({
+    id: '/satuan/',
+    path: '/satuan/',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 const AuthenticatedPetaniIndexRoute =
   AuthenticatedPetaniIndexRouteImport.update({
     id: '/petani/',
     path: '/petani/',
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
+const AuthenticatedLahanIndexRoute = AuthenticatedLahanIndexRouteImport.update({
+  id: '/lahan/',
+  path: '/lahan/',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedInventoryManagementIndexRoute =
+  AuthenticatedInventoryManagementIndexRouteImport.update({
+    id: '/inventory-management/',
+    path: '/inventory-management/',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 const AuthenticatedHelpCenterIndexRoute =
   AuthenticatedHelpCenterIndexRouteImport.update({
     id: '/help-center/',
     path: '/help-center/',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedFarmManagementIndexRoute =
+  AuthenticatedFarmManagementIndexRouteImport.update({
+    id: '/farm-management/',
+    path: '/farm-management/',
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
 const AuthenticatedChatsIndexRoute = AuthenticatedChatsIndexRouteImport.update({
@@ -221,8 +248,12 @@ export interface FileRoutesByFullPath {
   '/clerk/user-management': typeof ClerkAuthenticatedUserManagementRoute
   '/apps': typeof AuthenticatedAppsIndexRoute
   '/chats': typeof AuthenticatedChatsIndexRoute
+  '/farm-management': typeof AuthenticatedFarmManagementIndexRoute
   '/help-center': typeof AuthenticatedHelpCenterIndexRoute
+  '/inventory-management': typeof AuthenticatedInventoryManagementIndexRoute
+  '/lahan': typeof AuthenticatedLahanIndexRoute
   '/petani': typeof AuthenticatedPetaniIndexRoute
+  '/satuan': typeof AuthenticatedSatuanIndexRoute
   '/settings/': typeof AuthenticatedSettingsIndexRoute
   '/tasks': typeof AuthenticatedTasksIndexRoute
   '/users': typeof AuthenticatedUsersIndexRoute
@@ -249,8 +280,12 @@ export interface FileRoutesByTo {
   '/clerk/user-management': typeof ClerkAuthenticatedUserManagementRoute
   '/apps': typeof AuthenticatedAppsIndexRoute
   '/chats': typeof AuthenticatedChatsIndexRoute
+  '/farm-management': typeof AuthenticatedFarmManagementIndexRoute
   '/help-center': typeof AuthenticatedHelpCenterIndexRoute
+  '/inventory-management': typeof AuthenticatedInventoryManagementIndexRoute
+  '/lahan': typeof AuthenticatedLahanIndexRoute
   '/petani': typeof AuthenticatedPetaniIndexRoute
+  '/satuan': typeof AuthenticatedSatuanIndexRoute
   '/settings': typeof AuthenticatedSettingsIndexRoute
   '/tasks': typeof AuthenticatedTasksIndexRoute
   '/users': typeof AuthenticatedUsersIndexRoute
@@ -282,8 +317,12 @@ export interface FileRoutesById {
   '/clerk/_authenticated/user-management': typeof ClerkAuthenticatedUserManagementRoute
   '/_authenticated/apps/': typeof AuthenticatedAppsIndexRoute
   '/_authenticated/chats/': typeof AuthenticatedChatsIndexRoute
+  '/_authenticated/farm-management/': typeof AuthenticatedFarmManagementIndexRoute
   '/_authenticated/help-center/': typeof AuthenticatedHelpCenterIndexRoute
+  '/_authenticated/inventory-management/': typeof AuthenticatedInventoryManagementIndexRoute
+  '/_authenticated/lahan/': typeof AuthenticatedLahanIndexRoute
   '/_authenticated/petani/': typeof AuthenticatedPetaniIndexRoute
+  '/_authenticated/satuan/': typeof AuthenticatedSatuanIndexRoute
   '/_authenticated/settings/': typeof AuthenticatedSettingsIndexRoute
   '/_authenticated/tasks/': typeof AuthenticatedTasksIndexRoute
   '/_authenticated/users/': typeof AuthenticatedUsersIndexRoute
@@ -314,8 +353,12 @@ export interface FileRouteTypes {
     | '/clerk/user-management'
     | '/apps'
     | '/chats'
+    | '/farm-management'
     | '/help-center'
+    | '/inventory-management'
+    | '/lahan'
     | '/petani'
+    | '/satuan'
     | '/settings/'
     | '/tasks'
     | '/users'
@@ -342,8 +385,12 @@ export interface FileRouteTypes {
     | '/clerk/user-management'
     | '/apps'
     | '/chats'
+    | '/farm-management'
     | '/help-center'
+    | '/inventory-management'
+    | '/lahan'
     | '/petani'
+    | '/satuan'
     | '/settings'
     | '/tasks'
     | '/users'
@@ -374,8 +421,12 @@ export interface FileRouteTypes {
     | '/clerk/_authenticated/user-management'
     | '/_authenticated/apps/'
     | '/_authenticated/chats/'
+    | '/_authenticated/farm-management/'
     | '/_authenticated/help-center/'
+    | '/_authenticated/inventory-management/'
+    | '/_authenticated/lahan/'
     | '/_authenticated/petani/'
+    | '/_authenticated/satuan/'
     | '/_authenticated/settings/'
     | '/_authenticated/tasks/'
     | '/_authenticated/users/'
@@ -531,6 +582,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedSettingsIndexRouteImport
       parentRoute: typeof AuthenticatedSettingsRouteRoute
     }
+    '/_authenticated/satuan/': {
+      id: '/_authenticated/satuan/'
+      path: '/satuan'
+      fullPath: '/satuan'
+      preLoaderRoute: typeof AuthenticatedSatuanIndexRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/petani/': {
       id: '/_authenticated/petani/'
       path: '/petani'
@@ -538,11 +596,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedPetaniIndexRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/lahan/': {
+      id: '/_authenticated/lahan/'
+      path: '/lahan'
+      fullPath: '/lahan'
+      preLoaderRoute: typeof AuthenticatedLahanIndexRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/inventory-management/': {
+      id: '/_authenticated/inventory-management/'
+      path: '/inventory-management'
+      fullPath: '/inventory-management'
+      preLoaderRoute: typeof AuthenticatedInventoryManagementIndexRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/help-center/': {
       id: '/_authenticated/help-center/'
       path: '/help-center'
       fullPath: '/help-center'
       preLoaderRoute: typeof AuthenticatedHelpCenterIndexRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/farm-management/': {
+      id: '/_authenticated/farm-management/'
+      path: '/farm-management'
+      fullPath: '/farm-management'
+      preLoaderRoute: typeof AuthenticatedFarmManagementIndexRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
     '/_authenticated/chats/': {
@@ -639,8 +718,12 @@ interface AuthenticatedRouteRouteChildren {
   AuthenticatedIndexRoute: typeof AuthenticatedIndexRoute
   AuthenticatedAppsIndexRoute: typeof AuthenticatedAppsIndexRoute
   AuthenticatedChatsIndexRoute: typeof AuthenticatedChatsIndexRoute
+  AuthenticatedFarmManagementIndexRoute: typeof AuthenticatedFarmManagementIndexRoute
   AuthenticatedHelpCenterIndexRoute: typeof AuthenticatedHelpCenterIndexRoute
+  AuthenticatedInventoryManagementIndexRoute: typeof AuthenticatedInventoryManagementIndexRoute
+  AuthenticatedLahanIndexRoute: typeof AuthenticatedLahanIndexRoute
   AuthenticatedPetaniIndexRoute: typeof AuthenticatedPetaniIndexRoute
+  AuthenticatedSatuanIndexRoute: typeof AuthenticatedSatuanIndexRoute
   AuthenticatedTasksIndexRoute: typeof AuthenticatedTasksIndexRoute
   AuthenticatedUsersIndexRoute: typeof AuthenticatedUsersIndexRoute
 }
@@ -650,8 +733,13 @@ const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedIndexRoute: AuthenticatedIndexRoute,
   AuthenticatedAppsIndexRoute: AuthenticatedAppsIndexRoute,
   AuthenticatedChatsIndexRoute: AuthenticatedChatsIndexRoute,
+  AuthenticatedFarmManagementIndexRoute: AuthenticatedFarmManagementIndexRoute,
   AuthenticatedHelpCenterIndexRoute: AuthenticatedHelpCenterIndexRoute,
+  AuthenticatedInventoryManagementIndexRoute:
+    AuthenticatedInventoryManagementIndexRoute,
+  AuthenticatedLahanIndexRoute: AuthenticatedLahanIndexRoute,
   AuthenticatedPetaniIndexRoute: AuthenticatedPetaniIndexRoute,
+  AuthenticatedSatuanIndexRoute: AuthenticatedSatuanIndexRoute,
   AuthenticatedTasksIndexRoute: AuthenticatedTasksIndexRoute,
   AuthenticatedUsersIndexRoute: AuthenticatedUsersIndexRoute,
 }
