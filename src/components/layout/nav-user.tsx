@@ -106,6 +106,7 @@ export function NavUser({
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
             <DropdownMenuItem
+              className='cursor-pointer'
               onClick={() => {
                 logout()
                 nav({ to: '/sign-in' })

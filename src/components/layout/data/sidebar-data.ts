@@ -87,12 +87,12 @@ export const sidebarData: SidebarData = {
           ],
         },
         {
-          title: 'Farm Maanagement',
+          title: 'Farm Management',
           url: '/farm-management',
           icon: Truck,
         },
         {
-          title: 'Inventory Maanagement',
+          title: 'Inventory Management',
           url: '/inventory-management',
           icon: Warehouse,
         },

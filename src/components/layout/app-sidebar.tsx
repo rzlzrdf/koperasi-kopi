@@ -1,4 +1,5 @@
 import { IconSchemaOff } from '@tabler/icons-react'
+import { useAuth } from '@/context/auth-context'
 import {
   Sidebar,
   SidebarContent,
@@ -12,11 +13,12 @@ import { NavUser } from '@/components/layout/nav-user'
 import { sidebarData } from './data/sidebar-data'
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+  const { user } = useAuth()
   return (
     <Sidebar collapsible='icon' variant='inset' {...props}>
       <SidebarHeader>
         {/* <h1 className='text-2xl font-bold mt-4 pl-3'>Koperasi Kopi</h1> */}
-        <div className='p-2 w-fit rounded-full bg-primary text-white'>
+        <div className='bg-primary w-fit rounded-full p-2 text-white'>
           <IconSchemaOff />
         </div>
         {/* <TeamSwitcher teams={sidebarData.teams} /> */}
@@ -27,7 +29,13 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         ))}
       </SidebarContent>
       <SidebarFooter>
-        <NavUser user={sidebarData.user} />
+        <NavUser
+          user={{
+            name: user?.email || '',
+            email: user?.name || '',
+            avatar: '',
+          }}
+        />
       </SidebarFooter>
       <SidebarRail />
     </Sidebar>
