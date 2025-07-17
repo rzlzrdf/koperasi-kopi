@@ -1,11 +1,10 @@
+import { cleanEmptyParams } from "@/lib/utils";
 import {
   getRouteApi,
   RegisteredRouter,
   RouteIds,
   SearchParamOptions,
 } from "@tanstack/react-router";
-import { cleanEmptyParams } from "@/lib/utils";
-import { Parameter } from "@/features/petani/hooks";
 
 export function useFilters<
   TId extends RouteIds<RegisteredRouter["routeTree"]>,
@@ -17,7 +16,7 @@ export function useFilters<
 >(routeId: TId) {
   const routeApi = getRouteApi<TId>(routeId);
   const navigate = routeApi.useNavigate();
-  const filters:Parameter = routeApi.useSearch();
+  const filters = routeApi.useSearch();
 
   const setFilters = (partialFilters: Partial<TSearchParams>) =>
     navigate({

@@ -101,6 +101,12 @@ importers:
       js-cookie:
         specifier: ^3.0.5
         version: 3.0.5
+      lodash:
+        specifier: ^4.17.21
+        version: 4.17.21
+      lodash.isequal:
+        specifier: ^4.5.0
+        version: 4.5.0
       lucide-react:
         specifier: ^0.523.0
         version: 0.523.0(react@19.1.0)
@@ -134,6 +140,9 @@ importers:
       tw-animate-css:
         specifier: ^1.3.4
         version: 1.3.4
+      use-debounce:
+        specifier: ^10.0.5
+        version: 10.0.5(react@19.1.0)
       zod:
         specifier: ^3.25.67
         version: 3.25.67
@@ -2363,6 +2372,10 @@ packages:
     resolution: {integrity: sha512-iPZK6eYjbxRu3uB4/WZ3EsEIMJFMqAoopl3R+zuq0UjcAm/MO6KCweDgPfP3elTztoKP3KtnVHxTn2NHBSDVUw==}
     engines: {node: '>=10'}
 
+  lodash.isequal@4.5.0:
+    resolution: {integrity: sha512-pDo3lu8Jhfjqls6GkMgpahsF9kCyayhgykjyLMNFTKWrpVdAQtYyB4muAMWozBB4ig/dtWAmsMxLEI8wuz+DYQ==}
+    deprecated: This package is deprecated. Use require('node:util').isDeepStrictEqual instead.
+
   lodash.merge@4.6.2:
     resolution: {integrity: sha512-0KpjqXRVvrYyCsX1swR/XTK0va6VQkQM6MNo7PqW77ByjAhoARA8EfrP1N4+KlKj8YS0ZUCtRT/YUuhyYDujIQ==}
 
@@ -2836,6 +2849,12 @@ packages:
     peerDependenciesMeta:
       '@types/react':
         optional: true
+
+  use-debounce@10.0.5:
+    resolution: {integrity: sha512-Q76E3lnIV+4YT9AHcrHEHYmAd9LKwUAbPXDm7FlqVGDHiSOhX3RDjT8dm0AxbJup6WgOb1YEcKyCr11kBJR5KQ==}
+    engines: {node: '>= 16.0.0'}
+    peerDependencies:
+      react: '*'
 
   use-sidecar@1.1.3:
     resolution: {integrity: sha512-Fedw0aZvkhynoPYlA5WXrMCAMm+nSWdZt6lzJQ7Ok8S6Q+VsHmHpRWndVRJ8Be0ZbkfPc5LRYH+5XrzXcEeLRQ==}
@@ -5035,6 +5054,8 @@ snapshots:
     dependencies:
       p-locate: 5.0.0
 
+  lodash.isequal@4.5.0: {}
+
   lodash.merge@4.6.2: {}
 
   lodash@4.17.21: {}
@@ -5435,6 +5456,10 @@ snapshots:
       tslib: 2.8.1
     optionalDependencies:
       '@types/react': 19.1.8
+
+  use-debounce@10.0.5(react@19.1.0):
+    dependencies:
+      react: 19.1.0
 
   use-sidecar@1.1.3(@types/react@19.1.8)(react@19.1.0):
     dependencies:
