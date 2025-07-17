@@ -9,9 +9,12 @@ import { columns } from './components/column'
 import { DataTable } from './components/data-table'
 import PetaniProvider from './context/petani-context'
 import { usePetanis } from './hooks'
+import { useMemo } from 'react'
 
 export default function Users() {
   const { filters } = useFilters(Route.id)
+
+  const petaniColumn = useMemo(() => columns, []);
 
   // custom hooks for get all petani
   const { data, isLoading } = usePetanis(filters)
@@ -38,7 +41,7 @@ export default function Users() {
           <SkeletonPage />
         ) : (
           <DataTable
-            columns={columns}
+            columns={petaniColumn}
             data={data?.users || []}
             total={data?.total || 0}
           />

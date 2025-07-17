@@ -3,7 +3,9 @@ import Cookies from 'js-cookie'
 import { Parameter } from '@/features/petani/hooks'
 
 export const getAllPetani = async (filters: Parameter) => {
-  const { limit, page, search, sortBy, order} = filters
+  const { limit, page, search, sortBy: arrSortBy } = filters
+  const sortParam = arrSortBy // e.g., "firstName.desc"
+  const [sortBy, order] = sortParam?.split('.') ?? []
 
   const tokenString = Cookies.get('user')
   const token = tokenString && JSON.parse(tokenString).token
@@ -24,8 +26,8 @@ export const getAllPetani = async (filters: Parameter) => {
         : {
             limit: limit || 10,
             skip: ((page || 1) - 1) * (limit || 10),
-            sortBy: sortBy,
-            order:order
+            sortBy: sortBy, // "firstName"
+            order: order,
           }),
     },
     headers: {

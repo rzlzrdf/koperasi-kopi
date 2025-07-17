@@ -5,8 +5,14 @@ import {
   flexRender,
   getCoreRowModel,
   getFilteredRowModel,
+  SortingState,
   useReactTable,
 } from '@tanstack/react-table'
+import {
+  IconSortAscending,
+  IconSortAZ,
+  IconSortDescending,
+} from '@tabler/icons-react'
 import { Route } from '@/routes/_authenticated/petani'
 import { useFilters } from '@/hooks/useFilters'
 import { Button } from '@/components/ui/button'
@@ -32,6 +38,7 @@ import {
   TableRow,
 } from '@/components/ui/table'
 import DebouncedInput from './DebouncedInput'
+import { stateToSortBy } from '@/lib/utils'
 
 export const DEFAULT_PAGE_INDEX = 0
 export const DEFAULT_PAGE_SIZE = 10
@@ -49,11 +56,24 @@ export function DataTable<TData, TValue>({
 }: DataTableProps<TData, TValue>) {
   const { filters, setFilters } = useFilters(Route.id)
   const [row, setRow] = useState<string>('10')
+  const [localSorting, setLocalSorting] = useState<SortingState>([])
 
   const table = useReactTable({
     data,
     columns,
     manualFiltering: true,
+    manualSorting: true,
+    state: {
+      sorting: localSorting,
+    },
+    onSortingChange: (updater) => {
+      // Method 1: Get the new sorting state
+      const newSorting =
+        typeof updater === 'function' ? updater(localSorting) : updater
+      setLocalSorting(newSorting)
+
+      setFilters({ sortBy: stateToSortBy(newSorting) })
+    },
     getCoreRowModel: getCoreRowModel(),
     getFilteredRowModel: getFilteredRowModel(),
   })
@@ -83,13 +103,35 @@ export function DataTable<TData, TValue>({
               <TableRow key={headerGroup.id}>
                 {headerGroup.headers.map((header) => {
                   return (
-                    <TableHead key={header.id}>
-                      {header.isPlaceholder
-                        ? null
-                        : flexRender(
-                            header.column.columnDef.header,
-                            header.getContext()
-                          )}
+                    <TableHead
+                      key={header.id}
+                      className={
+                        header.column.getCanSort()
+                          ? 'cursor-pointer select-none'
+                          : ''
+                      }
+                      onClick={
+                        header.column.getCanSort()
+                          ? header.column.getToggleSortingHandler()
+                          : undefined
+                      }
+                    >
+                      <div className='flex items-center gap-1'>
+                        {header.isPlaceholder
+                          ? null
+                          : flexRender(
+                              header.column.columnDef.header,
+                              header.getContext()
+                            )}
+
+                        {header.column.getCanSort() &&
+                          (() => {
+                            const sorted = header.column.getIsSorted()
+                            if (sorted === 'asc') return <IconSortAscending />
+                            if (sorted === 'desc') return <IconSortDescending />
+                            return <IconSortAZ />
+                          })()}
+                      </div>
                     </TableHead>
                   )
                 })}

@@ -1,5 +1,5 @@
-import { Checkbox } from "@/components/ui/checkbox"
 import { ColumnDef } from '@tanstack/react-table'
+import { Checkbox } from '@/components/ui/checkbox'
 
 export interface Petani {
   id: number
@@ -31,6 +31,7 @@ export interface Petani {
 export const columns: ColumnDef<Petani>[] = [
   {
     id: 'actoin',
+    enableSorting: false,
     header: ({ table }) => (
       <Checkbox
         checked={
@@ -51,9 +52,12 @@ export const columns: ColumnDef<Petani>[] = [
   {
     accessorKey: 'id',
     header: 'No.',
+    enableSorting: false
   },
   {
+    accessorKey: 'firstName',
     header: 'Name',
+    enableSorting: true,
     cell: ({ row }) => {
       const { firstName, lastName } = row.original
       return (
@@ -65,6 +69,7 @@ export const columns: ColumnDef<Petani>[] = [
   },
   {
     accessorKey: 'address',
+    enableSorting: false,
     header: 'Lahan',
     cell: ({ row }) => {
       const { address, city, country } = row.original.address
@@ -77,6 +82,7 @@ export const columns: ColumnDef<Petani>[] = [
   },
   {
     accessorKey: 'phone',
+    enableSorting: false,
     header: 'Telepon',
     cell: ({ row }) => {
       const { phone } = row.original
