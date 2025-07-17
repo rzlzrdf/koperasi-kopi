@@ -7,6 +7,8 @@ export type Parameter = {
   page?: number
   limit?: number
   search?: string;
+  sortBy?: string,
+  order?: string
 }
 
 export const usePetanis = (filters: Parameter) => {

@@ -2,21 +2,31 @@ import axios from 'axios'
 import Cookies from 'js-cookie'
 import { Parameter } from '@/features/petani/hooks'
 
-
-export const getAllPetani = async (filters:Parameter) => {
-  const {limit, page, search} =filters
+export const getAllPetani = async (filters: Parameter) => {
+  const { limit, page, search, sortBy, order} = filters
 
   const tokenString = Cookies.get('user')
   const token = tokenString && JSON.parse(tokenString).token
 
-  // console.log(filters)
   const res = await axios({
     method: 'GET',
-    url: `https://dummyjson.com/users`,
+    url: `https://dummyjson.com/users/search`,
     params: {
-      limit: limit || 10,
-      skip: ((page || 1) - 1) * (limit || 10),
-      q: search!
+      // limit: limit || 10,
+      // skip: ((page || 1) - 1) * (limit || 10),
+      // q: search
+      ...(search
+        ? {
+            q: search,
+            limit: 10,
+            skip: 0,
+          }
+        : {
+            limit: limit || 10,
+            skip: ((page || 1) - 1) * (limit || 10),
+            sortBy: sortBy,
+            order:order
+          }),
     },
     headers: {
       Authorization: `Bearer ${token}`,
